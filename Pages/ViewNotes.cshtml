@@ -1,0 +1,75 @@
+﻿@page
+@model GerenciamentoTurismo.Pages.ViewNotesModel
+@{
+    ViewData["Title"] = "Anotações";
+}
+
+<div class="container">
+    <div class="row">
+        <!-- Coluna para Criar Anotações -->
+        <div class="col-md-4">
+            <h3>Criar Nova Anotação</h3>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Title" class="control-label"></label>
+                    <input asp-for="Input.Title" class="form-control" />
+                    <span asp-validation-for="Input.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Content" class="control-label"></label>
+                    <textarea asp-for="Input.Content" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Input.Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Salvar Anotação" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <!-- Coluna para Listar e Ver Anotações -->
+        <div class="col-md-8">
+            <div class="row">
+                <!-- Lista de Arquivos -->
+                <div class="col-md-5">
+                    <h3>Anotações Salvas</h3>
+                    @if (Model.NoteFiles.Any())
+                    {
+                        <ul class="list-group">
+                            @foreach (var file in Model.NoteFiles)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    @file
+                                    <!-- Link para chamar o handler OnGetViewNoteAsync -->
+                                    <a asp-page-handler="ViewNote" asp-route-fileName="@file" class="btn btn-sm btn-secondary">Visualizar</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Nenhuma anotação encontrada.</p>
+                    }
+                </div>
+
+                <!-- Visualizador de Conteúdo -->
+                <div class="col-md-7">
+                    <h3>Conteúdo da Anotação</h3>
+                    @if (!string.IsNullOrEmpty(Model.NoteContent))
+                    {
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <!-- Usar <pre> para manter a formatação do texto (quebras de linha, etc.) -->
+                                <pre style="white-space: pre-wrap;">@Model.NoteContent</pre>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>Selecione uma anotação para ver o conteúdo.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿@page
+@model GerenciamentoTurismo.Pages.CreateCityModel
+
+<h2>Criar Nova Cidade</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Cidade.Nome" class="control-label"></label>
+                <input asp-for="Cidade.Nome" class="form-control" />
+                <span asp-validation-for="Cidade.Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cidade.PaisDestinoId" class="control-label">País</label>
+                <select asp-for="Cidade.PaisDestinoId" class="form-control" asp-items="Model.Paises">
+                    <option value="">-- Selecione um País --</option>
+                </select>
+                <span asp-validation-for="Cidade.PaisDestinoId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Criar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

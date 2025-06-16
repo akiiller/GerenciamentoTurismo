@@ -1,0 +1,66 @@
+﻿@page
+@model GerenciamentoTurismo.Areas.Pacotes.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Detalhes do Pacote";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>@Model.PacoteTuristico.Titulo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.PacoteTuristico.Titulo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.PacoteTuristico.Titulo)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.PacoteTuristico.DataInicio)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.PacoteTuristico.DataInicio)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.PacoteTuristico.CapacidadeMaxima)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.PacoteTuristico.CapacidadeMaxima)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.PacoteTuristico.Preco)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.PacoteTuristico.Preco.ToString("C", new System.Globalization.CultureInfo("pt-BR"))
+        </dd>
+
+        <dt class="col-sm-3">
+            Destinos Incluídos
+        </dt>
+        <dd class="col-sm-9">
+            @if (Model.PacoteTuristico.PacoteDestinos != null && Model.PacoteTuristico.PacoteDestinos.Any())
+            {
+                <ul>
+                    @foreach (var pacoteDestino in Model.PacoteTuristico.PacoteDestinos)
+                    {
+                        <li>
+                            @pacoteDestino.CidadeDestino.Nome, @pacoteDestino.CidadeDestino.Pais.Nome
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <span>Nenhum destino associado a este pacote.</span>
+            }
+        </dd>
+    </dl>
+</div>
+<div class="mt-4">
+    <a asp-area="Pacotes" asp-page="./Edit" asp-route-id="@Model.PacoteTuristico.Id" class="btn btn-primary">Editar</a>
+    <a asp-area="Pacotes" asp-page="./Index" class="btn btn-secondary">Voltar para a Lista</a>
+</div>

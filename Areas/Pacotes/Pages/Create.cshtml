@@ -1,0 +1,53 @@
+﻿@page
+@model GerenciamentoTurismo.Areas.Pacotes.Pages.CreateModel
+@{
+    ViewData["Title"] = "Criar Novo Pacote Turístico";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>Preencha os dados do novo pacote</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <!-- Exibe um sumário de todos os erros de validação -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="PacoteTuristico.Titulo" class="control-label"></label>
+                <input asp-for="PacoteTuristico.Titulo" class="form-control" />
+                <span asp-validation-for="PacoteTuristico.Titulo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="PacoteTuristico.DataInicio" class="control-label"></label>
+                <input asp-for="PacoteTuristico.DataInicio" class="form-control" />
+                <span asp-validation-for="PacoteTuristico.DataInicio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="PacoteTuristico.CapacidadeMaxima" class="control-label"></label>
+                <input asp-for="PacoteTuristico.CapacidadeMaxima" class="form-control" />
+                <span asp-validation-for="PacoteTuristico.CapacidadeMaxima" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="PacoteTuristico.Preco" class="control-label"></label>
+                <input asp-for="PacoteTuristico.Preco" class="form-control" />
+                <span asp-validation-for="PacoteTuristico.Preco" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Criar Pacote" class="btn btn-primary" />
+                <a asp-area="Pacotes" asp-page="Index" class="btn btn-secondary">Voltar para a Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
