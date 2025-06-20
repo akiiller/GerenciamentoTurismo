@@ -1,0 +1,25 @@
+﻿@*
+    Esta partial view verifica se existe uma mensagem de sucesso no TempData.
+    Se existir, exibe um alerta bonito que desaparece sozinho.
+*@
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <script>
+        // Pequeno script para fazer o alerta desaparecer após 5 segundos
+        document.addEventListener('DOMContentLoaded', (event) => {
+            setTimeout(function() {
+                var alert = document.getElementById('success-alert');
+                if (alert) {
+                    // Usa a API do Bootstrap para fechar o alerta
+                    var bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }
+            }, 5000); // 5000 milissegundos = 5 segundos
+        });
+    </script>
+}

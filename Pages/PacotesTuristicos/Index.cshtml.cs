@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace GerenciamentoTurismo.Areas.Pacotes.Pages
+namespace GerenciamentoTurismo.Pages.PacotesTuristicos
 {
     public class IndexModel : PageModel
     {

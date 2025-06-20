@@ -20,6 +20,8 @@ namespace GerenciamentoTurismo.Data.Configurations
 
             builder.HasIndex(c => c.Email)
                 .IsUnique();
+
+            builder.HasQueryFilter(c => c.DeletedAt == null);
         }
     }
 }

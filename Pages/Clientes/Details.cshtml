@@ -1,0 +1,37 @@
+@page "{id:int}"
+@model GerenciamentoTurismo.Pages_Clientes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente.Email)
+        </dd>
+    </dl>
+</div>
+
+<hr />
+
+@* CHAMANDO A PARTIAL VIEW E PASSANDO A LISTA DE RESERVAS COMO MODELO *@
+<partial name="~/Pages/Shared/_ClienteReservasListPartial.cshtml" model="Model.Cliente.Reservas" />
+
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Cliente.Id">Editar</a> |
+    <a asp-page="./Index">Voltar para a Lista</a>
+</div>

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
-namespace GerenciamentoTurismo.Areas.Pacotes.Pages
+namespace GerenciamentoTurismo.Pages.PacotesTuristicos
 {
     public class CreateModel : PageModel
     {
@@ -38,6 +38,8 @@ namespace GerenciamentoTurismo.Areas.Pacotes.Pages
 
             _context.PacotesTuristicos.Add(PacoteTuristico);
             await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = $"Pacote Turístico '{PacoteTuristico}' criado com sucesso!";
 
             return RedirectToPage("./Index");
         }

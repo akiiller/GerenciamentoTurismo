@@ -1,0 +1,30 @@
+﻿@*
+    Esta Partial View espera receber uma lista de Reservas.
+*@
+@model List<GerenciamentoTurismo.Models.Reserva>
+
+<h4>Reservas Realizadas</h4>
+@if (Model != null && Model.Any())
+{
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Pacote</th>
+                <th>Data da Reserva</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reserva in Model)
+            {
+                <tr>
+                    <td>@reserva.PacoteTuristico.Titulo</td>
+                    <td>@reserva.DataReserva.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Este cliente ainda não realizou nenhuma reserva.</p>
+}

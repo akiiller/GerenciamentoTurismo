@@ -1,0 +1,42 @@
+﻿@page
+@model GerenciamentoTurismo.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post" asp-route-returnUrl="@Model.ReturnUrl">
+                <h4>Use uma conta local para entrar.</h4>
+                <hr />
+                @* Exibe o erro "Usuário ou senha inválidos" que adicionamos no PageModel *@
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                @* Campo de Usuário *@
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Usuario" class="form-control" autocomplete="username" aria-required="true" placeholder="usuario" />
+                    <label asp-for="Input.Usuario" class="form-label"></label>
+                    <span asp-validation-for="Input.Usuario" class="text-danger"></span>
+                </div>
+
+                @* Campo de Senha *@
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Senha" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.Senha" class="form-label"></label>
+                    <span asp-validation-for="Input.Senha" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Entrar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@* Ativa a validação do lado do cliente (no navegador) *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
