@@ -12,9 +12,9 @@ namespace GerenciamentoTurismo.Pages_Clientes
 {
     public class DeleteModel : PageModel
     {
-        private readonly GerenciamentoTurismo.Data.AgenciaTurismoContext _context;
+        private readonly AgenciaTurismoContext _context;
 
-        public DeleteModel(GerenciamentoTurismo.Data.AgenciaTurismoContext context)
+        public DeleteModel(AgenciaTurismoContext context)
         {
             _context = context;
         }

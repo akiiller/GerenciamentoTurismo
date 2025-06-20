@@ -13,9 +13,9 @@ namespace GerenciamentoTurismo.Pages_Clientes
 {
     public class EditModel : PageModel
     {
-        private readonly GerenciamentoTurismo.Data.AgenciaTurismoContext _context;
+        private readonly AgenciaTurismoContext _context;
 
-        public EditModel(GerenciamentoTurismo.Data.AgenciaTurismoContext context)
+        public EditModel(AgenciaTurismoContext context)
         {
             _context = context;
         }

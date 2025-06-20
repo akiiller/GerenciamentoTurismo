@@ -12,9 +12,9 @@ namespace GerenciamentoTurismo.Pages_Clientes
 {
     public class CreateModel : PageModel
     {
-        private readonly GerenciamentoTurismo.Data.AgenciaTurismoContext _context;
+        private readonly AgenciaTurismoContext _context;
 
-        public CreateModel(GerenciamentoTurismo.Data.AgenciaTurismoContext context)
+        public CreateModel(AgenciaTurismoContext context)
         {
             _context = context;
         }

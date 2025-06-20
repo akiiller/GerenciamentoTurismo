@@ -12,9 +12,9 @@ namespace GerenciamentoTurismo.Pages_Clientes
 {
     public class DetailsModel : PageModel
     {
-        private readonly GerenciamentoTurismo.Data.AgenciaTurismoContext _context;
+        private readonly AgenciaTurismoContext _context;
 
-        public DetailsModel(GerenciamentoTurismo.Data.AgenciaTurismoContext context)
+        public DetailsModel(AgenciaTurismoContext context)
         {
             _context = context;
         }
@@ -28,16 +28,17 @@ namespace GerenciamentoTurismo.Pages_Clientes
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes.FirstOrDefaultAsync(m => m.Id == id);
+            Cliente = await _context.Clientes
+                .Include(c => c.Reservas)
+                    .ThenInclude(r => r.PacoteTuristico)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (cliente is not null)
+            if (Cliente == null)
             {
-                Cliente = cliente;
-
-                return Page();
+                return NotFound();
             }
 
-            return NotFound();
+            return Page();
         }
     }
 }
