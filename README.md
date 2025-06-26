@@ -87,5 +87,4 @@ Para aceder às áreas protegidas do sistema, utilize as seguintes credenciais:
 - Utilizador: admin
 - Senha: 1234
 
-## 6. Autor
-Matheus Felipe Alves Santos
+
