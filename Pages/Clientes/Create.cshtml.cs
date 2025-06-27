@@ -25,17 +25,31 @@ namespace GerenciamentoTurismo.Pages_Clientes
         }
 
         [BindProperty]
-        public Cliente Cliente { get; set; } = default!;
+        public Cliente Cliente { get; set; } // = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            Console.WriteLine($"{Cliente.Id} ");
+            // Se o ModelState não for válido (incluindo nossos erros customizados), recarrega a página
             if (!ModelState.IsValid)
             {
+                // Adicione um log ou um breakpoint aqui para inspecionar os erros.
+                // Por exemplo, para ver os erros no console:
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    //var propertyName = modelStateEntry.Key;
+                    //var errors = modelStateEntry.Value.Errors;
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        Console.WriteLine($"Erro de validação no campo : {error.ErrorMessage}{Cliente.Id}");
+                    }
+                }
                 return Page();
             }
 
             _context.Clientes.Add(Cliente);
+            
             await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = $"Cliente '{Cliente.Nome}' criado com sucesso!";

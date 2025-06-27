@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace GerenciamentoTurismo.Data.Configurations
 {
     public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
-    { 
+    {
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
             builder.HasKey(c => c.Id);
@@ -22,6 +22,11 @@ namespace GerenciamentoTurismo.Data.Configurations
                 .IsUnique();
 
             builder.HasQueryFilter(c => c.DeletedAt == null);
+
+               builder.HasData(
+                   
+                    
+                );
         }
     }
 }

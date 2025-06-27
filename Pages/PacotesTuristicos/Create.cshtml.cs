@@ -26,9 +26,10 @@ namespace GerenciamentoTurismo.Pages.PacotesTuristicos
 
         public async Task<IActionResult> OnPostAsync()
         {
+            Console.WriteLine($"{PacoteTuristico.Id} ");
             if (PacoteTuristico.DataInicio.Date < DateTime.Now.Date)
             {
-                ModelState.AddModelError("PacoteTuristico.DataInicio", "A data de início não pode ser anterior a hoje.");
+                ModelState.AddModelError("PacoteTuristico.DataInicio", "A data de inï¿½cio nï¿½o pode ser anterior a hoje.");
             }
 
             if (!ModelState.IsValid)
@@ -39,7 +40,7 @@ namespace GerenciamentoTurismo.Pages.PacotesTuristicos
             _context.PacotesTuristicos.Add(PacoteTuristico);
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = $"Pacote Turístico '{PacoteTuristico}' criado com sucesso!";
+            TempData["SuccessMessage"] = $"Pacote Turï¿½stico '{PacoteTuristico}' criado com sucesso!";
 
             return RedirectToPage("./Index");
         }

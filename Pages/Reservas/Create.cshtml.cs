@@ -44,28 +44,29 @@ namespace GerenciamentoTurismo.Pages_Reservas
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            // --- VALIDAÇÃO DAS REGRAS DE NEGÓCIO ---
+            // --- VALIDAï¿½ï¿½O DAS REGRAS DE NEGï¿½CIO ---
 
-            // 1. Verificar se o pacote ainda está disponível (alguém pode ter reservado enquanto o form estava aberto)
+            // 1. Verificar se o pacote ainda estï¿½ disponï¿½vel (alguï¿½m pode ter reservado enquanto o form estava aberto)
             var pacote = await _context.PacotesTuristicos
                 .Include(p => p.Reservas)
                 .FirstOrDefaultAsync(p => p.Id == Reserva.PacoteTuristicoId);
+            Console.WriteLine($"{Reserva.Id} ");
 
             if (pacote == null || pacote.DataInicio <= DateTime.Now || pacote.Reservas.Count >= pacote.CapacidadeMaxima)
             {
-                ModelState.AddModelError(string.Empty, "Este pacote não está mais disponível para reserva.");
+                ModelState.AddModelError(string.Empty, "Este pacote nï¿½o estï¿½ mais disponï¿½vel para reserva.");
             }
 
-            // 2. Verificar se este cliente já não reservou este pacote
+            // 2. Verificar se este cliente jï¿½ nï¿½o reservou este pacote
             bool jaReservado = await _context.Reservas
                 .AnyAsync(r => r.ClienteId == Reserva.ClienteId && r.PacoteTuristicoId == Reserva.PacoteTuristicoId);
 
             if (jaReservado)
             {
-                ModelState.AddModelError(string.Empty, "Este cliente já possui uma reserva para este pacote.");
+                ModelState.AddModelError(string.Empty, "Este cliente jï¿½ possui uma reserva para este pacote.");
             }
 
-            // Se o ModelState não for válido (incluindo nossos erros customizados), recarrega a página
+            // Se o ModelState nï¿½o for vï¿½lido (incluindo nossos erros customizados), recarrega a pï¿½gina
             if (!ModelState.IsValid)
             {
                 // Precisamos recarregar os dropdowns em caso de erro
